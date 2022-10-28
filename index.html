@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h2 class="heading">CHOOSE COUNTRY</h2>
+    <div id="time"></div>
+    <form action="#" method="GET">
+      <img src="https://www.freeiconspng.com/uploads/blue-location-icon-26.png" width="30" alt="icon" class="local-data"/>
+      <input type="text" class="type-city" placeholder="type your city" name="city" value="" >
+      <input type="submit" class="search-button" value="SEARCH">
+    </form>
+    <h1 class="city">New York</h1>
+    
+    <div><span id="degree">10 </span><span class="c" onclick="getCelsius()">&#8451</span> | <span class="f" onclick="getFahrenheit()">F</span></div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
