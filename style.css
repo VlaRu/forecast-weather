@@ -1,4 +1,7 @@
-
+a:visited{
+  text-decoration: none;
+  color: initial;
+}
 body{
  background-color: rgb(169, 175, 224); 
  color: black;
@@ -78,4 +81,14 @@ span:hover{
 }
 #degree:hover{
   color: #000003;
+}
+a {
+  margin-top: 15px;
+  margin-bottom: 10px;
+  margin-left: 5px;
+  font-size: 18px;
+}
+a:hover{
+  cursor: pointer;
+  color: #4b42f5;
 }
