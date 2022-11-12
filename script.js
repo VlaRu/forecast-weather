@@ -5,9 +5,13 @@ const degrees = document.querySelector("#degree");
 const btn = document.querySelector(".search-button");
 const inp = document.querySelector(".type-city");
 const time = document.querySelector("#time")
-const fahrenheit = document.querySelector('.f')
-const celsius = document.querySelector('.c')
+const fahrenheit = document.querySelector(".f")
+const celsius = document.querySelector(".c")
 const local =document.querySelector(".local-data")
+const iconCurrentWeather = document.querySelector(".icon-weather")
+const humidity = document.querySelector(".humidity");
+const wind = document.querySelector(".wind");
+
 
 //let city = Object.keys(weather).filter((item) => {if(item == inp.value){return item}})
 
@@ -25,30 +29,53 @@ function getTime() {
 }
 setInterval(getTime, 1000);
 getTime()
+let temper = null;
 
+fahrenheit.onclick = function changeFahrenheit(e) {
+  e.preventDefault()
+  degrees.innerHTML  = Math.floor((temper * 9) /5 +32);
+}
 
-btn.onclick = function () { 
+celsius.onclick = function changeFahrenheit(e) {
+  e.preventDefault()
+  degrees.innerHTML  = temper;
+}
+
+btn.onclick = function() {   
+  let unit;
   let city;
   if (inp.value !== "") {
     text.innerText = inp.value;
     city = inp.value;
     inp.value = ''
   }
-  // = 'barcelona';
-  let unit = ["metric", "imperial"];
+  
+  unit = ["metric", "imperial"];
   let apiKey = "e186479a64f57dec494e256f54b201aa";
+
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${unit[0]}`;
+  
   function displayComments(response) {
-    let temper = Math.round(response.data.main.temp);
+    temper = Math.round(response.data.main.temp);
     degrees.innerHTML = `${temper}`;
-    console.log(temper);
+    iconCurrentWeather.setAttribute(
+      "src",
+      `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+      );
+    wind.innerHTML = Math.round(response.data.wind.speed);
+    humidity.innerHTML = response.data.main.humidity; 
   }
+  
   axios.get(`${apiUrl}&appid=${apiKey}`).then(displayComments);
+ 
 }
+
+
+
+
 
 local.onclick = function () {
   function showWeather(response) {
-    console.log(response);   
     let temp = Math.round(response.data.main.temp);
     text.innerText = `${response.data.name}`;
     degrees.innerHTML = `${temp}`;

@@ -10,16 +10,29 @@
 </head>
 <body>
   <div class="container">
-    <h2 class="heading">CHOOSE COUNTRY</h2>
     <div id="time"></div>
-    <form action="#" method="GET">
-      <img src="https://www.freeiconspng.com/uploads/blue-location-icon-26.png" width="30" alt="icon" class="local-data"/>
+    <h2 class="heading">WEATHER SEARCH</h2>   
+    <form action="#" method="GET" class="form-input">
+      <img src="https://www.freeiconspng.com/uploads/blue-location-icon-26.png" width="45" alt="icon-location" class="local-data"/>
       <input type="text" class="type-city" placeholder="type your city" name="city" value="" >
       <input type="submit" class="search-button" value="SEARCH">
     </form>
-    <h1 class="city">New York</h1>
-    <div><span id="degree">10 </span><span class="c" onclick="getCelsius()">&#8451</span> | <span class="f" onclick="getFahrenheit()">F</span></div>
-    <a href="https://github.com/VlaRu" target="_blank"><img src="/src/github-icon.svg" alt="" width="15" height="15">view source code </a>
+    <div class="main-degree-container">
+      <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="" class="icon-weather">
+      <div class="degree-container">
+        <h1 class="city">New York</h1>
+        <span id="degree">10 </span><span class="c" onclick="getCelsius()">&#8451</span> | <span class="f" onclick="getFahrenheit()">F</span>
+      </div>
+      <div class="desciption-weather">
+        <p >Humidity: <span class="humidity"></span> %</p>
+        <p >Wind: <span class="wind"></span> km/h</p>  
+      </div>
+    </div>
+    
+    <footer>
+      <p>This project was coded by <a href="https://www.shecodes.io/"  target="_blank">SheCodes</a> and is open-sourced on <a href="https://github.com/VlaRu" target="_blank"><img src="/src/github-icon.svg" alt="" width="15" height="15">GitHub</a></p>
+    </footer>
+    
   </div>
   <script src="script.js"></script>
 </body>
