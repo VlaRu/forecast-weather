@@ -190,3 +190,28 @@ footer{
   bottom: 20px;
   left: 25%;
 }
+
+.week-weather-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top: 50px; 
+}
+
+.week-weather{
+  border-radius: 20px;
+  border: 1px solid #fff;
+  background-color: rgb(255, 255, 255,0.3);
+}
+
+.day-week{
+  min-width: 120px;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.day-weather{
+  font-size: 18px;
+}

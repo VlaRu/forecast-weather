@@ -11,13 +11,17 @@ const local =document.querySelector(".local-data")
 const iconCurrentWeather = document.querySelector(".icon-weather")
 const humidity = document.querySelector(".humidity");
 const wind = document.querySelector(".wind");
+const dayWeek = document.querySelectorAll(".day-week");
+let icon = document.querySelectorAll(".icon-day-weather");
+const dayWeather =document.querySelectorAll(".day-weather");
 
+let days;
 
 //let city = Object.keys(weather).filter((item) => {if(item == inp.value){return item}})
 
 // add time
 function getTime() {
-  var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
   let date = new Date()
   let dateWeek = date.getDay()
   let hour = date.getHours()
@@ -41,6 +45,33 @@ celsius.onclick = function changeFahrenheit(e) {
   degrees.innerHTML  = temper;
 }
 
+// get Week forecast
+function getWeekForecast(coord) {
+
+  //response.data
+
+  let latitude = coord.coord.lat;
+  let longitude = coord.coord.lon;
+  let temp = Math.round(coord.main.temp);
+  let icon1 = coord.weather[0].icon;
+  let forecast = coord.dt;
+  console.log(forecast);
+  
+  let apiKey = "e186479a64f57dec494e256f54b201aa";
+  let apiUrl = `https://api.openweathermap.org/data/3.0/onecall?lat=${latitude}&lon=${longitude}&exclude=daily&appid=${apiKey}&units=metric`;
+
+  console.log(apiUrl);
+  
+  dayWeather.forEach((day,index) =>{
+    day.innerHTML = temp +'°';
+  })
+  icon.forEach((item)=> {item.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${icon1}@2x.png`
+    )})
+  axios.get(apiUrl).then(getWeekForecast); 
+}
+
 btn.onclick = function() {   
   let unit;
   let city;
@@ -49,10 +80,9 @@ btn.onclick = function() {
     city = inp.value;
     inp.value = ''
   }
-  
+
   unit = ["metric", "imperial"];
   let apiKey = "e186479a64f57dec494e256f54b201aa";
-
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${unit[0]}`;
   
   function displayComments(response) {
@@ -63,17 +93,18 @@ btn.onclick = function() {
       `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
       );
     wind.innerHTML = Math.round(response.data.wind.speed);
-    humidity.innerHTML = response.data.main.humidity; 
+    humidity.innerHTML = response.data.main.humidity;    
+    getWeekForecast(response.data);
+
   }
-  
-  axios.get(`${apiUrl}&appid=${apiKey}`).then(displayComments);
- 
+  axios.get(`${apiUrl}&appid=${apiKey}`).then(displayComments); 
 }
 
 
 
 
 
+//add local forecast
 local.onclick = function () {
   function showWeather(response) {
     let temp = Math.round(response.data.main.temp);
@@ -90,13 +121,6 @@ local.onclick = function () {
     navigator.geolocation.getCurrentPosition(retrievePosition);
 }
 
-
-
-
-
-/* fahrenheit.onclick = function() {
-  degrees.innerText = '50';
-}
-celsius.onclick = function() {
-  degrees.innerText = '10';
-} */
+dayWeek.forEach((day,index) =>{
+    day.innerHTML = days[index]
+})
