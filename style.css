@@ -44,7 +44,7 @@ a:visited{
   color: initial;
 }
 body{
- background-color: rgb(169, 175, 224); 
+ background: linear-gradient(rgb(0, 195, 255), rgb(233, 111, 227)); 
  color: black;
  text-align: center;
  display: flex;

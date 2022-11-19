@@ -47,12 +47,12 @@ celsius.onclick = function changeFahrenheit(e) {
 
 // get Week forecast
 function getWeekForecast(coord) {
-
   //response.data
 
   let latitude = coord.coord.lat;
   let longitude = coord.coord.lon;
   let temp = Math.round(coord.main.temp);
+  let tempMin = Math.round(coord.main.temp_min);
   let icon1 = coord.weather[0].icon;
   let forecast = coord.dt;
   console.log(forecast);
@@ -60,10 +60,9 @@ function getWeekForecast(coord) {
   let apiKey = "e186479a64f57dec494e256f54b201aa";
   let apiUrl = `https://api.openweathermap.org/data/3.0/onecall?lat=${latitude}&lon=${longitude}&exclude=daily&appid=${apiKey}&units=metric`;
 
-  console.log(apiUrl);
   
   dayWeather.forEach((day,index) =>{
-    day.innerHTML = temp +'°';
+    day.innerHTML = `${temp}°C | ${tempMin}°C`;
   })
   icon.forEach((item)=> {item.setAttribute(
     "src",
@@ -71,6 +70,7 @@ function getWeekForecast(coord) {
     )})
   axios.get(apiUrl).then(getWeekForecast); 
 }
+
 
 btn.onclick = function() {   
   let unit;
