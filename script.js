@@ -15,13 +15,13 @@ const dayWeek = document.querySelectorAll(".day-week");
 let icon = document.querySelectorAll(".icon-day-weather");
 const dayWeather =document.querySelectorAll(".day-weather");
 
-let days;
+let days= ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
 //let city = Object.keys(weather).filter((item) => {if(item == inp.value){return item}})
 
 // add time
 function getTime() {
-  days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+ // days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
   let date = new Date()
   let dateWeek = date.getDay()
   let hour = date.getHours()
@@ -35,18 +35,20 @@ setInterval(getTime, 1000);
 getTime()
 let temper = null;
 
+//convert in fahrenheit
 fahrenheit.onclick = function changeFahrenheit(e) {
   e.preventDefault()
   degrees.innerHTML  = Math.floor((temper * 9) /5 +32);
 }
 
+//convert in celsius
 celsius.onclick = function changeFahrenheit(e) {
   e.preventDefault()
   degrees.innerHTML  = temper;
 }
 
 // get Week forecast
-function getWeekForecast(coord) {
+/* function getWeekForecast(coord) {
   //response.data
 
   let latitude = coord.coord.lat;
@@ -61,6 +63,8 @@ function getWeekForecast(coord) {
   let apiUrl = `https://api.openweathermap.org/data/3.0/onecall?lat=${latitude}&lon=${longitude}&exclude=daily&appid=${apiKey}&units=metric`;
 
   
+
+
   dayWeather.forEach((day,index) =>{
     day.innerHTML = `${temp}°C | ${tempMin}°C`;
   })
@@ -69,8 +73,38 @@ function getWeekForecast(coord) {
     `http://openweathermap.org/img/wn/${icon1}@2x.png`
     )})
   axios.get(apiUrl).then(getWeekForecast); 
-}
+} */
+function displayForecast() {
+  let forecastElement = document.querySelector(".week-weather-container");
 
+  let forecastHTML = `<div class="week-weather">`;
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+      <div class="col-2">
+        <h3 class="day-week">${day}</h3>
+        <img
+          class="icon-day-weather"
+          src="http://openweathermap.org/img/wn/50d@2x.png"
+          alt=""
+          width="42"
+        />
+        <div class="weather-forecast-temperatures">
+          <span class="day-weather">0</span>
+          <span class="day-weather">0</span>
+        </div>
+      </div>
+    `;
+    forecastHTML = forecastHTML + `</div>`;
+    forecastElement.innerHTML = forecastHTML;
+    //axios.get(apiUrl).then(getWeekForecast); 
+  });
+
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+  console.log(forecastHTML);
+}
 
 btn.onclick = function() {   
   let unit;
@@ -124,3 +158,5 @@ local.onclick = function () {
 dayWeek.forEach((day,index) =>{
     day.innerHTML = days[index]
 })
+
+displayForecast()
