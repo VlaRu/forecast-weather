@@ -7,13 +7,14 @@ const text = document.querySelector(".city");
 const degrees = document.querySelector("#degree");
 const btn = document.querySelector(".search-button");
 const inp = document.querySelector(".type-city");
-const time = document.querySelector("#time")
 const local =document.querySelector(".local-data")
 const iconCurrentWeather = document.querySelector(".icon-weather")
 const humidity = document.querySelector(".humidity");
 const wind = document.querySelector(".wind");
 let icon = document.querySelectorAll(".icon-day-weather");
-const dayWeather =document.querySelectorAll(".day-weather");
+const dayWeather = document.querySelectorAll(".day-weather");
+const time = document.querySelector("#time")
+
 let temper = null;
 
 const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -30,6 +31,8 @@ btn.addEventListener('click', () => {
       humidity.innerHTML = response.data.main.humidity;
       wind.innerHTML = Math.round(response.data.wind.speed * 3.6);
       iconCurrentWeather.src = `http://openweathermap.org/img/wn/${response.data.weather[0].icon}.png`;
+      inp.value = '';
+      convertHandlers(Math.round(response.data.main.temp))
       // Get forecast for 7 days
       return axios.get(forecastUrl);
     })
@@ -41,6 +44,8 @@ btn.addEventListener('click', () => {
       console.error('Error:', error);
     });
 });
+
+
 
 function displayForecast(dailyForecast) {
   const dateDailyForecast = dailyForecast.filter(item => item.dt_txt.includes('12:00'));
@@ -60,9 +65,10 @@ function displayForecast(dailyForecast) {
     forecastHTML +=
       `
         <div class="week-weather">
-          <div class="col-2">
-            <h3 class="day-week">${dayName}</h3>
-            <h2 class="day-month">${dayNumber}/${monthName}</h2>
+         
+          <h3 class="day-week">${dayName}</h3>
+          <h2 class="day-month">${dayNumber}/${monthName}</h2>
+          <div class="week-weather-info">
             <img
               class="icon-day-weather"
               src="http://openweathermap.org/img/wn/${weatherIcon}.png"
@@ -70,7 +76,7 @@ function displayForecast(dailyForecast) {
               width="42"
             />
             <div class="weather-forecast-temperatures">
-              <span class="day-weather day-weather-max">min ${dayMaxTemp}°C /</span>
+              <span class="day-weather day-weather-max">min ${dayMaxTemp}°C</span><br>
               <span class="day-weather day-weather-min">max ${dayMinTemp}°C</span>
             </div>
           </div>
@@ -116,4 +122,3 @@ local.onclick =()=>{
 setInterval(getTime, 1000);
 getTime()
 //convert in fahrenheit
-convertHandlers(temper)
