@@ -1,4 +1,3 @@
-
 *{
   padding: 0;
   margin: 0;
@@ -51,6 +50,7 @@ body{
  justify-content: center;
  align-content: center;
 }
+
 .container{
   width: 900px;
   margin-top: 40px;
@@ -58,8 +58,9 @@ body{
   background-color: rgb(255, 255, 255, 0.3);
   display: flex;
   flex-direction: column;
-  position: relative;
+  
 }
+
 #time{ 
   color: rgb(4, 0, 0);
   font-size: 22px;
@@ -142,6 +143,7 @@ body{
   justify-content: center;
   align-items: center;
   margin-top: 40px;
+  flex: 1;
 }
 
 #degree{
@@ -158,6 +160,7 @@ span.f,span.c{
 span:hover{
   color: #4b42f5;
 }
+
 .degree-container{
   margin-right: 60px;
 }
@@ -178,17 +181,22 @@ a:hover{
   color: #4b42f5;
 }
 
+span.highlights{
+  color: #4b42f5;
+}
+
 .desciption-weather{
   font-size: 22px;
   font-weight: 600;
-  color: rgb(0, 4, 5);
-  text-shadow:  2px 1px 2px rgb(14, 194, 244);
+  color: #4b42f5;
+  text-shadow:  2px 1px 2px #fafafc;
 }
 
 footer{
-  position: absolute;
-  bottom: 20px;
-  left: 25%;
+  display: flex;
+  justify-content: center;
+  align-content: center; 
+  padding: 20px;
 }
 
 .week-weather-container{
@@ -197,13 +205,18 @@ footer{
   justify-content: space-around;
   padding-left: 10px;
   padding-right: 10px;
-  margin-top: 50px; 
+  margin: 50px 0; 
 }
 
 .week-weather{
+  padding: 15px;
   border-radius: 20px;
   border: 1px solid #fff;
   background-color: rgb(255, 255, 255,0.3);
+}
+
+.week-weather-info{
+  display: flex;
 }
 
 .day-week{
