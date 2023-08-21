@@ -181,6 +181,10 @@ a:hover{
   color: #4b42f5;
 }
 
+span.highlights{
+  color: #4b42f5;
+}
+
 .desciption-weather{
   font-size: 22px;
   font-weight: 600;
