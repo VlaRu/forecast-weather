@@ -20,6 +20,34 @@ let temper = null;
 const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 const months = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"];
 
+
+window.addEventListener('DOMContentLoaded', () => {
+  const defaultCity = 'Madrid';
+  getWeatherData(defaultCity); 
+});
+
+function getWeatherData(city) {
+  const currentWeatherUrl = `${baseUrl}/weather?q=${city}&appid=${apiKey}&units=metric`;
+  const forecastUrl = `${baseUrl}/forecast?q=${city}&appid=${apiKey}&units=metric`;
+
+  axios.get(currentWeatherUrl)
+    .then(response => {
+      text.innerHTML = response.data.name;
+      degrees.innerHTML = Math.round(response.data.main.temp);
+      humidity.innerHTML = response.data.main.humidity;
+      wind.innerHTML = Math.round(response.data.wind.speed * 3.6);
+      iconCurrentWeather.src = `http://openweathermap.org/img/wn/${response.data.weather[0].icon}.png`;
+      convertHandlers(Math.round(response.data.main.temp))
+      return axios.get(forecastUrl);
+    })
+    .then(response => {
+      displayForecast(response.data.list);
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+}
+
 btn.addEventListener('click', () => {
   let city = inp.value;
   const currentWeatherUrl = `${baseUrl}/weather?q=${city}&appid=${apiKey}&units=metric`;
@@ -98,6 +126,7 @@ local.onclick =()=>{
     wind.innerHTML = Math.round(response.data.wind.speed * 3.6);
     iconCurrentWeather.src = `http://openweathermap.org/img/wn/${response.data.weather[0].icon}.png`;
     const localForecastUrl = `${baseUrl}/forecast?lat=${response.data.coord.lat}&lon=${response.data.coord.lon}&appid=${apiKey}&units=metric`;
+    convertHandlers(Math.round(response.data.main.temp))
     axios.get(localForecastUrl)
       .then(response => {
         // Display the local forecast using code 2

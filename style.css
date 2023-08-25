@@ -42,35 +42,51 @@ a:visited{
   text-decoration: none;
   color: initial;
 }
-body{
- background: linear-gradient(rgb(0, 195, 255), rgb(233, 111, 227)); 
- color: black;
- text-align: center;
- display: flex;
- justify-content: center;
- align-content: center;
+
+body {
+  margin: 0;
+  background-color:  rgb(233, 111, 227);
 }
 
-.container{
-  width: 900px;
-  margin-top: 40px;
-  margin-bottom: 40px;
-  background-color: rgb(255, 255, 255, 0.3);
+.background {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100vw;
+  height: 100vh;
+  background-image: url(./src/Cloudy_sky.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.container {
+  max-width: 1000px;
+  height: 90vh;
+  background-color: rgba(255, 255, 255, 0.7);
   display: flex;
   flex-direction: column;
-  
 }
 
 #time{ 
-  color: rgb(4, 0, 0);
+  display: flex;
+  justify-content: center;
+  max-width: 150px;
+  margin: 20px 0 0 20px;
+  padding: 5px;
   font-size: 22px;
   font-weight: 500;
-  margin: 10px 0 20px 10px;
-  padding: 5px;
-  display: flex;
-  justify-content: left;
   align-items: center;
+  color: rgb(233, 111, 227);
   text-decoration: underline;
+  border: 2px solid  rgb(14, 196, 247);
+  animation: example 5s linear 2s infinite alternate;
+}
+
+@keyframes example {
+  0% {border: 2px solid rgb(255, 255, 255);color:  rgb(14, 196, 247);}
+  50% {border: 2px solid  rgb(233, 111, 227)}
+  100% {border: 2px solid rgb(14, 196, 247);color: rgb(233, 111, 227);}
 }
 
 .heading{
@@ -87,12 +103,12 @@ body{
   align-items: center;
   justify-content: center;
   position: relative;
-  margin-top: 50px;
+  margin: 50px 0 20px 0;
 }
 
 .type-city{
   border-radius: 20px;
-  width: 350px;
+  max-width: 350px;
   height: 50px;
   border: 3px solid #4b42f5;
   font-size: 22px;
@@ -104,6 +120,7 @@ body{
   font-weight: 700;
   border: none;
   background-color: #8a84f3;
+  border: 2px solid #fff;
   border-radius: 15px;
   margin-left: 10px;
   width: 105px;
@@ -142,8 +159,8 @@ body{
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin-top: 40px;
   flex: 1;
+  background-image: url(./src/Cloudy_sky.jpg); 
 }
 
 #degree{
@@ -162,7 +179,7 @@ span:hover{
 }
 
 .degree-container{
-  margin-right: 60px;
+  margin-right: 10%;
 }
 
 #degree:hover{
@@ -209,7 +226,7 @@ footer{
 }
 
 .week-weather{
-  padding: 15px;
+  padding: 15px 5px;
   border-radius: 20px;
   border: 1px solid #fff;
   background-color: rgb(255, 255, 255,0.3);
@@ -217,14 +234,75 @@ footer{
 
 .week-weather-info{
   display: flex;
+  background-color: rgb(255, 255, 255,0.9);
+  border-radius: 15px;
 }
 
 .day-week{
-  min-width: 120px;
+  min-width: 100px;
   font-size: 20px;
   font-weight: 500;
 }
 
 .day-weather{
   font-size: 18px;
+}
+
+@media (max-width: 660px){
+  .week-weather-container{
+    background-color: none;
+    padding: 0;
+    margin: 0;
+  }
+  .week-weather{
+    background-color: none;
+    padding: 10px 5px;
+  }
+  .week-weather-info{
+    flex-direction: column;
+    align-items: center;
+  }
+
+
+  .form-input{
+    margin: 0;
+  }
+
+  .heading{
+    margin: 10px 0;
+    font-size: 50px;
+  }
+
+  .main-degree-container{
+    margin: 0;
+  }
+
+  .city{
+    font-size: 35px;
+  }
+}
+@media (max-width: 575px){
+  .container{
+    height: 100%;
+  }
+
+  .type-city{
+    width: 150px;
+  }
+
+  .week-weather-container{
+    flex-direction: column;
+  }
+
+  .week-weather-info{
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .week-weather{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 0;
+  }
 }
