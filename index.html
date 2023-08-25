@@ -9,30 +9,32 @@
   <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
 </head>
 <body>
-  <div class="container">
-    <div id="time"></div>
-    <h2 class="heading">WEATHER SEARCH</h2>   
-    <form action="#" method="GET" class="form-input">
-      <img src="https://www.freeiconspng.com/uploads/blue-location-icon-26.png" width="45" alt="icon-location" class="local-data"/>
-      <input type="text" class="type-city" placeholder="type your city" name="city" value="" >
-      <input type="submit" class="search-button" value="SEARCH">
-    </form>
-    <div class="main-degree-container">
-      <img src="https://openweathermap.org/img/wn/10d@2x.png" alt="" class="icon-weather">
-      <div class="degree-container">
-        <h1 class="city">?</h1>
-        <span id="degree"></span><span class="c highlights" onclick="getCelsius()">&#8451</span> | <span class="f" onclick="getFahrenheit()">F</span>
+  <div class="background">
+    <div class="container">
+      <div id="time"></div>
+      <h2 class="heading">WEATHER SEARCH</h2>   
+      <form action="#" method="GET" class="form-input">
+        <img src="https://www.freeiconspng.com/uploads/blue-location-icon-26.png" width="45" alt="icon-location" class="local-data"/>
+        <input type="text" class="type-city" placeholder="type your city" name="city" value="" >
+        <input type="submit" class="search-button" value="SEARCH">
+      </form>
+      <div class="main-degree-container">
+        <img src="https://openweathermap.org/img/wn/10d@2x.png" alt="" class="icon-weather">
+        <div class="degree-container">
+          <h1 class="city">?</h1>
+          <span id="degree"></span><span class="c highlights" onclick="getCelsius()">&#8451</span> | <span class="f" onclick="getFahrenheit()">F</span>
+        </div>
+        <div class="desciption-weather">
+          <p >Humidity: <span class="humidity"></span> %</p>
+          <p >Wind: <span class="wind"></span> km/h</p>  
+        </div>
       </div>
-      <div class="desciption-weather">
-        <p >Humidity: <span class="humidity"></span> %</p>
-        <p >Wind: <span class="wind"></span> km/h</p>  
+      <div class="week-weather-container">
       </div>
+      <footer>
+        <p>This project was coded by Vladyslava Nikitchenko for <a href="https://www.shecodes.io/"  target="_blank">SheCodes</a> courses and is open-sourced on <a href="https://github.com/VlaRu" target="_blank"><img src="./src/github-icon.svg" alt="" width="15" height="15">GitHub</a></p>
+      </footer>
     </div>
-    <div class="week-weather-container">
-    </div>
-    <footer>
-      <p>This project was coded by Vladyslava Nikitchenko for <a href="https://www.shecodes.io/"  target="_blank">SheCodes courses</a> and is open-sourced on <a href="https://github.com/VlaRu" target="_blank"><img src="./src/github-icon.svg" alt="" width="15" height="15">GitHub</a></p>
-    </footer>
   </div>
   <script src="script.js" type="module"></script>
 </body>
