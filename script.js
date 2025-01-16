@@ -49,7 +49,19 @@ function getWeatherByCityByCoords(response) {
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-  navigator.geolocation.getCurrentPosition(retrievePosition);
+  if ("geolocation" in navigator) {
+  navigator.geolocation.getCurrentPosition(retrievePosition,
+      error => {
+        if (error.code === error.PERMISSION_DENIED) {
+          console.error('Geolocation error: User denied geolocation');
+          alert("Geolocation access denied. Showing weather for New York.");
+          getWeatherByCity('New York');
+        }
+      }
+  );
+  } else {
+    getWeatherByCity('New York')
+  }
 });
 
 btn.addEventListener('click', (e) => {
