@@ -2,7 +2,7 @@
   padding: 0;
   margin: 0;
   border: 0;
-  
+
 }
 
 *,*:before,*:after{
@@ -45,7 +45,6 @@ a:visited{
 
 body {
   margin: 0;
-  background-color:  rgb(233, 111, 227);
 }
 
 .background {
@@ -68,7 +67,7 @@ body {
   flex-direction: column;
 }
 
-#time{ 
+#time{
   display: flex;
   justify-content: center;
   max-width: 150px;
@@ -77,22 +76,22 @@ body {
   font-size: 22px;
   font-weight: 500;
   align-items: center;
-  color: rgb(233, 111, 227);
+  color: rgb(0, 0, 0);
   text-decoration: underline;
   border: 2px solid  rgb(14, 196, 247);
-  animation: example 5s linear 2s infinite alternate;
+  animation: change-border 5s linear 2s infinite alternate;
 }
 
-@keyframes example {
-  0% {border: 2px solid rgb(255, 255, 255);color:  rgb(14, 196, 247);}
+@keyframes change-border {
+  0% {border: 2px solid rgb(255, 255, 255);}
   50% {border: 2px solid  rgb(233, 111, 227)}
-  100% {border: 2px solid rgb(14, 196, 247);color: rgb(233, 111, 227);}
+  100% {border: 2px solid rgb(14, 196, 247)}
 }
 
 .heading{
   font-size: 60px;
-  color: #4b42f5;
-  text-shadow: 1px 1px 2px rgb(167, 61, 79);
+  color: #ababc7;
+  text-shadow: 1px 1px 2px rgb(20, 18, 19);
   margin-bottom: 20px;
   margin-top: 40px;
 }
@@ -110,9 +109,14 @@ body {
   border-radius: 20px;
   max-width: 350px;
   height: 50px;
-  border: 3px solid #4b42f5;
   font-size: 22px;
   text-indent: 15px;
+  border: 3px solid  rgb(14, 196, 247);
+  animation: change-border 3s linear 2s infinite alternate;
+}
+
+.type-city:focus{
+  animation: none;
 }
 
 .search-button{
@@ -142,7 +146,7 @@ body {
   transform: scale(1.5);
 }
 .city{
- 
+
   text-transform: capitalize;
   font-size: 42px;
 }
@@ -152,7 +156,7 @@ body {
   font-size: 22px;
   left: 170px;
   bottom: 3px;
-} 
+}
 
 .main-degree-container{
   display: flex;
@@ -160,7 +164,19 @@ body {
   justify-content: center;
   align-items: center;
   flex: 1;
-  background-image: url(./src/Cloudy_sky.jpg); 
+  background-image: url(./src/Cloudy_sky.jpg);
+  background-repeat: repeat-x;
+  background-size: auto;
+  animation: animateBackground 20s linear infinite;
+}
+
+@keyframes animateBackground {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 100% 0;
+  }
 }
 
 #degree{
@@ -205,14 +221,14 @@ span.highlights{
 .desciption-weather{
   font-size: 22px;
   font-weight: 600;
-  color: #4b42f5;
+  color: #010011;
   text-shadow:  2px 1px 2px #fafafc;
 }
 
 footer{
   display: flex;
   justify-content: center;
-  align-content: center; 
+  align-content: center;
   padding: 20px;
 }
 
@@ -222,7 +238,7 @@ footer{
   justify-content: space-around;
   padding-left: 10px;
   padding-right: 10px;
-  margin: 50px 0; 
+  margin: 20px 0;
 }
 
 .week-weather{
@@ -234,9 +250,12 @@ footer{
 
 .week-weather-info{
   display: flex;
-  background-color: rgb(255, 255, 255,0.9);
+  flex-direction: column;
+  align-items: center;
+  background-color: rgba(177, 159, 255, 0.773);
   border-radius: 15px;
 }
+
 
 .day-week{
   min-width: 100px;
@@ -263,9 +282,8 @@ footer{
     align-items: center;
   }
 
-
   .form-input{
-    margin: 0;
+    margin: 0 0 20px 0;
   }
 
   .heading{
@@ -273,15 +291,25 @@ footer{
     font-size: 50px;
   }
 
-  .main-degree-container{
-    margin: 0;
-  }
-
   .city{
     font-size: 35px;
   }
 }
 @media (max-width: 575px){
+
+  #time{
+    justify-content: right;
+    max-width: 100%;
+    margin: 0 5px 0 0;
+    padding: 5px;
+    font-size: 20px;
+    font-weight: 500;
+    color: rgb(5, 0, 5);
+    text-decoration: underline;
+    border: none;
+    animation: none;
+  }
+
   .container{
     height: 100%;
   }
@@ -304,5 +332,11 @@ footer{
     justify-content: space-around;
     align-items: center;
     border-radius: 0;
+  }
+}
+@media (max-width: 400px){
+  .heading{
+    margin: 30px 0;
+    font-size: 33px;
   }
 }

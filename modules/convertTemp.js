@@ -10,7 +10,7 @@ export function convertHandlers(initialTemp) {
     celsius.classList.remove("highlights");
     fahrenheit.classList.add("highlights");
   }
-  
+
   //convert in celsius
   celsius.onclick = (e) => {
     e.preventDefault()
@@ -19,5 +19,3 @@ export function convertHandlers(initialTemp) {
     celsius.classList.add("highlights");
   }
 }
-
-/*i want to add in my code condition ,if you celsius.onclick class="c" will add class highlights, and if you fahrenheit.onclick class="f" will add class highlights*/
